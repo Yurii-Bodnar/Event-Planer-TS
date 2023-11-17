@@ -29,14 +29,12 @@ const DetailsEvent: React.FC = () => {
   const isTabletOrDesktop = useIsTabletOrDesktop();
 
   const handleDelete = () => {
-    if (events.length > 0) {
-      const res = events.filter((el) => el.id !== eventDetails[0].id);
-      if (res.length > 0) {
-        setEvents(res);
-        localStorage.setItem("events", JSON.stringify(res));
-        navigate("/");
-      }
-    }
+    const res = events.filter((el) => el.id !== eventDetails[0].id);
+    console.log(res);
+
+    setEvents(res);
+    localStorage.setItem("events", JSON.stringify(res));
+    navigate("/");
   };
   return (
     <MainBox>

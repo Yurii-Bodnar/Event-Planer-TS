@@ -1,5 +1,7 @@
 import { Events } from "./events";
-
+export interface IValuePiece {
+  IValuePiece: Date | null;
+}
 export interface IPropsFormComponent {
   categoryName: string;
   choseCategory: boolean;
@@ -9,8 +11,8 @@ export interface IPropsFormComponent {
   handleClick: (e: any) => void;
   setCategoryName: React.Dispatch<React.SetStateAction<string>>;
   setChoseCategory: React.Dispatch<React.SetStateAction<boolean>>;
-  value: string;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
+  // value: IValuePiece | [IValuePiece, IValuePiece];
+  // onChange: React.Dispatch<React.SetStateAction<IValuePiece>>;
   isCalendarOpen: boolean;
   handleCalendar: () => void;
   calendarValue: string;
@@ -22,13 +24,13 @@ export interface IPropsFormComponent {
 export interface IPropsForCategoriesBox {
   handleClick: (e: any) => void;
 }
-export interface IPropsCalendarComponent {
-  value: string;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
+export type IPropsCalendarComponent = {
+  // value: IValuePiece | [IValuePiece, IValuePiece];
+  // onChange: React.Dispatch<React.SetStateAction<IValuePiece>>;
   handleCalendar: () => void;
   setCalendarValue: React.Dispatch<React.SetStateAction<string>>;
   setIsCalendarOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 export interface IPropsCategories {
   chooseCategoryHandler: (e: any) => void | string;
   categoryName: string;

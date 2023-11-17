@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { styled } from "styled-components";
 export interface IPropBoxForFilter {
-  showCategory: Boolean;
+  $showCategory: boolean;
 }
 export interface IPropCategoryName {
-  categoryName: string;
+  $categoryName: string;
 }
 export const Container = styled.div`
   display: flex;
@@ -26,8 +26,8 @@ export const BoxForFilter = styled.div<IPropBoxForFilter>`
   position: relative;
   padding: 16px;
   cursor: pointer;
-  border-radius: ${({ showCategory }) =>
-    showCategory ? "8px 8px 0px 0px" : !showCategory && "8px"};
+  border-radius: ${({ $showCategory }) =>
+    $showCategory ? "8px 8px 0px 0px" : !$showCategory && "8px"};
   background: #fff;
   width: 24px;
   height: 24px;
@@ -108,12 +108,12 @@ export const IconFilter = styled.svg<IPropCategoryName>`
   width: 24px;
   height: 24px;
 
-  fill: ${({ categoryName }) =>
-    categoryName ? "#7b61ff" : !categoryName && "#3f3f3f"};
+  fill: ${({ $categoryName }) =>
+    $categoryName ? "#7b61ff" : !$categoryName && "#3f3f3f"};
 `;
 export const TextBtn = styled.span<IPropCategoryName>`
-  color: ${({ categoryName }) =>
-    categoryName ? "#7b61ff" : !categoryName && "#3f3f3f"};
+  color: ${({ $categoryName }) =>
+    $categoryName ? "#7b61ff" : !$categoryName && "#3f3f3f"};
   font-family: Poppins;
   font-size: 16px;
   font-style: normal;

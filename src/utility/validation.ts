@@ -1,3 +1,6 @@
+import { FormikErrors } from "formik";
+import { IFormikValues } from "../types/interfaces";
+
 export interface IErrors {
   title: string;
   description: string;
@@ -5,14 +8,9 @@ export interface IErrors {
   location: string;
   priority: string;
 }
-export const validation = (values: any) => {
-  const errors: IErrors = {
-    title: "",
-    description: "",
-    time: "",
-    location: "",
-    priority: "",
-  };
+export const validation = (values: IFormikValues) => {
+  const errors: FormikErrors<IErrors> = {};
+
   if (!values.title) {
     errors.title = "Invalid title";
   }

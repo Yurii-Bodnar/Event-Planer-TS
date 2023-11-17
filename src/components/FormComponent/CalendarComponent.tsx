@@ -5,35 +5,33 @@ import {
   BtnFroCalendarCancel,
   ContainerCalendar,
 } from "./FormComponent.styled";
-import "react-calendar/dist/Calendar.css";
 import { correctDateCalendar } from "../../utility/helpers";
 import { IPropsCalendarComponent } from "../../types/interfaces";
+import React, { useState } from "react";
 
-const CalendarComponent: React.FC<IPropsCalendarComponent> = (props) => {
-  const {
-    // onChange,
-    value,
-    handleCalendar,
-    setCalendarValue,
-    setIsCalendarOpen,
-  } = props;
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+export const CalendarComponent: React.FC<IPropsCalendarComponent> = (props) => {
+  const { handleCalendar, setCalendarValue, setIsCalendarOpen } = props;
+
+  const [value, onChange] = useState<Value>(new Date());
+
   const handlerBtnCancel = () => {
     handleCalendar();
-    // setIsCalendarOpen(false);
     setCalendarValue("");
   };
   const handlerBtnChooseDate = () => {
     handleCalendar();
     setIsCalendarOpen(false);
-    setCalendarValue(correctDateCalendar(value));
+    const correctDate = correctDateCalendar(value);
+    setCalendarValue(correctDate);
   };
-  // const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-  //   onChange(e.target.value);
-  // };
+
   return (
     <ContainerCalendar>
       <Calendar
-        // onChange={handleChange}
+        onChange={onChange}
         value={value}
         showNeighboringMonth={false}
         locale="EN"
@@ -52,5 +50,3 @@ const CalendarComponent: React.FC<IPropsCalendarComponent> = (props) => {
     </ContainerCalendar>
   );
 };
-
-export default CalendarComponent;

@@ -20,8 +20,8 @@ import { EventsContext, SortByCategory } from "../../utility/context";
 
 const FilterButtons: React.FC = () => {
   const isTabletOrDesktop = useIsTabletOrDesktop();
-  const [showCategory, setShowCategory] = useState(false);
-  const [categoryName, setCategoryName] = useState("");
+  const [showCategory, setShowCategory] = useState<boolean>(false);
+  const [categoryName, setCategoryName] = useState<string>("");
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchParams, setSearchParams]: [URLSearchParams, Function] =
     useSearchParams();
@@ -38,9 +38,7 @@ const FilterButtons: React.FC = () => {
   const showCategoryHandler = () =>
     showCategory ? setShowCategory(false) : setShowCategory(true);
 
-  const chooseCategoryHandler: React.MouseEventHandler<HTMLLabelElement> = (
-    e
-  ) => {
+  const chooseCategoryHandler = (e: React.ChangeEvent<HTMLLabelElement>) => {
     let params = { key: (e.target as HTMLElement).textContent };
     const chosenCategoryList = events.filter((el) => {
       if (el.category === (e.target as HTMLElement).textContent) {
@@ -48,12 +46,14 @@ const FilterButtons: React.FC = () => {
       }
       return null;
     });
+    const { textContent } = e.target;
+    if (textContent) {
+      setCategoryName(textContent);
+    }
 
     if (chosenCategoryList.length === 0) {
       return alert("This list does not contain such a category");
     }
-    // setCategoryName((e.target as HTMLElement).textContent);
-
     setSearchParams(params);
   };
 
@@ -65,10 +65,9 @@ const FilterButtons: React.FC = () => {
         }
         return null;
       });
-      // if (chosenCategoryList.length === 0) {
-      //   alert("This list does not contain such a category");
-      // }
       setSortByCategory([...chosenCategoryList]);
+    } else {
+      setSortByCategory([]);
     }
   }, [categoryName, events, setSortByCategory]);
   useEffect(() => {
@@ -82,14 +81,14 @@ const FilterButtons: React.FC = () => {
   return (
     <Container>
       <Box>
-        <BoxForFilter showCategory={showCategory} onClick={showCategoryHandler}>
+        <BoxForFilter $showCategory onClick={showCategoryHandler}>
           {isTabletOrDesktop && (
-            <TextBtn categoryName={categoryName}>
+            <TextBtn $categoryName={categoryName}>
               {categoryName ? categoryName : "Category"}
             </TextBtn>
           )}
 
-          <IconFilter categoryName={categoryName}>
+          <IconFilter $categoryName={categoryName}>
             <use href={iconFilterByCategory + "#filter-by-category"}></use>
           </IconFilter>
           {showCategory && (
@@ -105,7 +104,7 @@ const FilterButtons: React.FC = () => {
 
         <BoxForSort>
           {isTabletOrDesktop && (
-            <TextBtn categoryName={categoryName}>Sort by</TextBtn>
+            <TextBtn $categoryName={categoryName}>Sort by</TextBtn>
           )}
           <IconSort>
             <use href={iconSort + "#sort"}></use>

@@ -1,12 +1,12 @@
 export type Events = {
-  title: "";
-  description: "";
-  date: "";
-  time: "";
-  location: "";
-  category: "";
-  priority: "";
-  id: "";
+  title: string;
+  description: string;
+  date: string;
+  time: string;
+  location: string;
+  category: string;
+  priority: string;
+  id: string;
 };
 export type SortedCategory = {
   category: Events[];

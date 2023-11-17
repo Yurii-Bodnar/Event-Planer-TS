@@ -25,6 +25,9 @@ const GlobalStyle = createGlobalStyle`
     background-color: transparent;
     border: none;
   }
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    background: none;
+}
 `;
 
 export default GlobalStyle;

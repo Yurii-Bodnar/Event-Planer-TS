@@ -12,10 +12,6 @@ const FormPage = lazy(() => import("../pages/FormPage/FormPage"));
 const DetailsPage = lazy(() => import("../pages/DetailsPage/DetailsPage"));
 
 const App: React.FC = () => {
-  //   const [events, setEvents] = useState<Events | []>([]);
-  //   const [eventDetails, setEventDetails] = useState([]);
-  //   const [sortByCategory, setSortByCategory] = useState([]);
-
   //   useEffect(() => {
   //     if (localStorage.getItem("events"))
   //       setEvents(JSON.parse(localStorage.getItem("events")));

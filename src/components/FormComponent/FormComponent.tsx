@@ -35,8 +35,8 @@ import iconSelectError from "../../images/icons/chevronError-down.svg";
 import iconSelectUp from "../../images/icons/chevron-up-small.svg";
 import iconSelectErrorUp from "../../images/icons/chevron-error-up.svg";
 import iconDeleteDisabled from "../../images/icons/close-btn-disabled.svg";
-import CalendarComponent from "./CalendarComponent";
 import { IFormikValues, IPropsFormComponent } from "../../types/interfaces";
+import { CalendarComponent } from "./CalendarComponent";
 
 const FormComponent: React.FC<IPropsFormComponent> = (props) => {
   const {
@@ -47,16 +47,12 @@ const FormComponent: React.FC<IPropsFormComponent> = (props) => {
     handleOpen,
     setCategoryName,
     setChoseCategory,
-    // setEvents,
+    setEvents,
     calendarValue,
     handleCalendar,
     isCalendarOpen,
-    onChange,
     setCalendarValue,
     setIsCalendarOpen,
-    value,
-    // valueTime,
-    // onChangeTime,
   } = props;
 
   const isMobile = useIsMobile();
@@ -73,6 +69,7 @@ const FormComponent: React.FC<IPropsFormComponent> = (props) => {
     priority: "",
     id: "",
   };
+
   const formik = useFormik({
     initialValues,
     validate: validation,
@@ -89,7 +86,7 @@ const FormComponent: React.FC<IPropsFormComponent> = (props) => {
       };
 
       if (categoryName && calendarValue) {
-        // setEvents([...events, dataEvent]);
+        setEvents([...events, dataEvent]);
         localStorage.setItem("events", JSON.stringify([...events, dataEvent]));
         setCategoryName("");
         setCalendarValue("");
@@ -283,8 +280,8 @@ const FormComponent: React.FC<IPropsFormComponent> = (props) => {
             </Label>
             {isCalendarOpen && (
               <CalendarComponent
-                value={value}
-                onChange={onChange}
+                // value={value}
+                // onChange={onChange}
                 handleCalendar={handleCalendar}
                 setCalendarValue={setCalendarValue}
                 setIsCalendarOpen={setIsCalendarOpen}
